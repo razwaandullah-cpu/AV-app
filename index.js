@@ -15,20 +15,22 @@ ageForm.addEventListener("submit", function (event) {
     else if (!Number.isInteger(age)) {
         showError("Please enter a whole number.");
     } 
-    else if (age < 0 || age > 120) {
-        showError("Age must be between 0 and 120.");
+    else if (age < 0) {
+        showError("Age cannot be negative.");
     } 
-    else if (age <= 12) {
-        showSuccess("You are a child.");
+    else if (age > 120) {
+        showError("You should be dead by now.");
     } 
-    else if (age <= 19) {
-        showSuccess("You are a teenager.");
-    } 
-    else if (age <= 59) {
-        showSuccess("You are an adult.");
+    else if (age < 18) {
+        const yearsLeft = 18 - age;
+        const yearWord = yearsLeft === 1 ? "year" : "years";
+
+        showError(
+            `You are not up to the required age. Come back in the next ${yearsLeft} ${yearWord}.`
+        );
     } 
     else {
-        showSuccess("You are an old person.");
+        showSuccess("You meet up with the age requirement.");
     }
 });
 
